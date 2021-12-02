@@ -13,9 +13,52 @@
 		5BB14F362759146300C673B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB14F342759146300C673B3 /* Main.storyboard */; };
 		5BB14F382759146400C673B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB14F372759146400C673B3 /* Assets.xcassets */; };
 		5BB14F3B2759146400C673B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB14F392759146400C673B3 /* LaunchScreen.storyboard */; };
+		5BB14F7A275914F400C673B3 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F45275914F400C673B3 /* GraphView.swift */; };
+		5BB14F7B275914F400C673B3 /* CGContext+GraphLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F46275914F400C673B3 /* CGContext+GraphLines.swift */; };
+		5BB14F7C275914F400C673B3 /* GraphSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F47275914F400C673B3 /* GraphSegment.swift */; };
+		5BB14F7E275914F400C673B3 /* SharedToyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F4A275914F400C673B3 /* SharedToyBox.swift */; };
+		5BB14F7F275914F400C673B3 /* SDKUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F4C275914F400C673B3 /* SDKUtils.swift */; };
+		5BB14F80275914F400C673B3 /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F4F275914F400C673B3 /* Toy.swift */; };
+		5BB14F81275914F400C673B3 /* SensorControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F50275914F400C673B3 /* SensorControl.swift */; };
+		5BB14F82275914F400C673B3 /* SPRKToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F52275914F400C673B3 /* SPRKToy.swift */; };
+		5BB14F83275914F400C673B3 /* SensorControlV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F53275914F400C673B3 /* SensorControlV1.swift */; };
+		5BB14F84275914F400C673B3 /* SpheroV1Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F54275914F400C673B3 /* SpheroV1Toy.swift */; };
+		5BB14F85275914F400C673B3 /* SpheroV1ToyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F55275914F400C673B3 /* SpheroV1ToyCore.swift */; };
+		5BB14F86275914F400C673B3 /* BB8Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F56275914F400C673B3 /* BB8Toy.swift */; };
+		5BB14F87275914F400C673B3 /* SensorControlV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F58275914F400C673B3 /* SensorControlV2.swift */; };
+		5BB14F88275914F400C673B3 /* BB9EToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F59275914F400C673B3 /* BB9EToy.swift */; };
+		5BB14F89275914F400C673B3 /* SpheroV2Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F5A275914F400C673B3 /* SpheroV2Toy.swift */; };
+		5BB14F8A275914F400C673B3 /* BoltToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F5B275914F400C673B3 /* BoltToy.swift */; };
+		5BB14F8B275914F400C673B3 /* R2D2Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F5C275914F400C673B3 /* R2D2Toy.swift */; };
+		5BB14F8C275914F400C673B3 /* SpheroV2ToyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F5D275914F400C673B3 /* SpheroV2ToyCore.swift */; };
+		5BB14F8D275914F400C673B3 /* MiniToy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F5E275914F400C673B3 /* MiniToy.swift */; };
+		5BB14F8E275914F400C673B3 /* ToyProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F5F275914F400C673B3 /* ToyProtocols.swift */; };
+		5BB14F8F275914F400C673B3 /* CBUUID+SpheroUUIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F60275914F400C673B3 /* CBUUID+SpheroUUIDs.swift */; };
+		5BB14F90275914F400C673B3 /* ToyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F62275914F400C673B3 /* ToyBox.swift */; };
+		5BB14F91275914F400C673B3 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F63275914F400C673B3 /* Color+Utils.swift */; };
+		5BB14F92275914F400C673B3 /* SensorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F65275914F400C673B3 /* SensorUtils.swift */; };
+		5BB14F93275914F400C673B3 /* CommandOperationV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F67275914F400C673B3 /* CommandOperationV2.swift */; };
+		5BB14F94275914F400C673B3 /* CommandSequencerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F68275914F400C673B3 /* CommandSequencerV2.swift */; };
+		5BB14F95275914F400C673B3 /* CommandV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F69275914F400C673B3 /* CommandV2.swift */; };
+		5BB14F96275914F400C673B3 /* VersionsCommandResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F6B275914F400C673B3 /* VersionsCommandResponse.swift */; };
+		5BB14F97275914F400C673B3 /* ShouldActionCompleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F6C275914F400C673B3 /* ShouldActionCompleteResponse.swift */; };
+		5BB14F98275914F400C673B3 /* SensorCommandResponseV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F6D275914F400C673B3 /* SensorCommandResponseV2.swift */; };
+		5BB14F99275914F400C673B3 /* SensorCommandResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F6E275914F400C673B3 /* SensorCommandResponse.swift */; };
+		5BB14F9A275914F400C673B3 /* SensorMaskCommandResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F6F275914F400C673B3 /* SensorMaskCommandResponse.swift */; };
+		5BB14F9B275914F400C673B3 /* PowerStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F70275914F400C673B3 /* PowerStateResponse.swift */; };
+		5BB14F9C275914F400C673B3 /* CollisionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F71275914F400C673B3 /* CollisionData.swift */; };
+		5BB14F9D275914F400C673B3 /* CommandV1Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F73275914F400C673B3 /* CommandV1Operation.swift */; };
+		5BB14F9E275914F400C673B3 /* CommandV1Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F74275914F400C673B3 /* CommandV1Sequencer.swift */; };
+		5BB14F9F275914F400C673B3 /* CommandV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F75275914F400C673B3 /* CommandV1.swift */; };
+		5BB14FA0275914F400C673B3 /* Double+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F76275914F400C673B3 /* Double+Utils.swift */; };
+		5BB14FA1275914F400C673B3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F77275914F400C673B3 /* String+Utils.swift */; };
+		5BB14FA32759153B00C673B3 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14FA22759153B00C673B3 /* SocketIOManager.swift */; };
+		BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1327E68B81410C23EFCBAA04 /* Pods-GrapesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.release.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.release.xcconfig"; sourceTree = "<group>"; };
+		2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrapesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB14F2B2759146300C673B3 /* GrapesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrapesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB14F2E2759146300C673B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BB14F302759146300C673B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +67,47 @@
 		5BB14F372759146400C673B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BB14F3A2759146400C673B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BB14F3C2759146400C673B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BB14F45275914F400C673B3 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		5BB14F46275914F400C673B3 /* CGContext+GraphLines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGContext+GraphLines.swift"; sourceTree = "<group>"; };
+		5BB14F47275914F400C673B3 /* GraphSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphSegment.swift; sourceTree = "<group>"; };
+		5BB14F4A275914F400C673B3 /* SharedToyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedToyBox.swift; sourceTree = "<group>"; };
+		5BB14F4C275914F400C673B3 /* SDKUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKUtils.swift; sourceTree = "<group>"; };
+		5BB14F4F275914F400C673B3 /* Toy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toy.swift; sourceTree = "<group>"; };
+		5BB14F50275914F400C673B3 /* SensorControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorControl.swift; sourceTree = "<group>"; };
+		5BB14F52275914F400C673B3 /* SPRKToy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPRKToy.swift; sourceTree = "<group>"; };
+		5BB14F53275914F400C673B3 /* SensorControlV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorControlV1.swift; sourceTree = "<group>"; };
+		5BB14F54275914F400C673B3 /* SpheroV1Toy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpheroV1Toy.swift; sourceTree = "<group>"; };
+		5BB14F55275914F400C673B3 /* SpheroV1ToyCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpheroV1ToyCore.swift; sourceTree = "<group>"; };
+		5BB14F56275914F400C673B3 /* BB8Toy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BB8Toy.swift; sourceTree = "<group>"; };
+		5BB14F58275914F400C673B3 /* SensorControlV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorControlV2.swift; sourceTree = "<group>"; };
+		5BB14F59275914F400C673B3 /* BB9EToy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BB9EToy.swift; sourceTree = "<group>"; };
+		5BB14F5A275914F400C673B3 /* SpheroV2Toy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpheroV2Toy.swift; sourceTree = "<group>"; };
+		5BB14F5B275914F400C673B3 /* BoltToy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoltToy.swift; sourceTree = "<group>"; };
+		5BB14F5C275914F400C673B3 /* R2D2Toy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R2D2Toy.swift; sourceTree = "<group>"; };
+		5BB14F5D275914F400C673B3 /* SpheroV2ToyCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpheroV2ToyCore.swift; sourceTree = "<group>"; };
+		5BB14F5E275914F400C673B3 /* MiniToy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniToy.swift; sourceTree = "<group>"; };
+		5BB14F5F275914F400C673B3 /* ToyProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToyProtocols.swift; sourceTree = "<group>"; };
+		5BB14F60275914F400C673B3 /* CBUUID+SpheroUUIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBUUID+SpheroUUIDs.swift"; sourceTree = "<group>"; };
+		5BB14F62275914F400C673B3 /* ToyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToyBox.swift; sourceTree = "<group>"; };
+		5BB14F63275914F400C673B3 /* Color+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Utils.swift"; sourceTree = "<group>"; };
+		5BB14F65275914F400C673B3 /* SensorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorUtils.swift; sourceTree = "<group>"; };
+		5BB14F67275914F400C673B3 /* CommandOperationV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandOperationV2.swift; sourceTree = "<group>"; };
+		5BB14F68275914F400C673B3 /* CommandSequencerV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandSequencerV2.swift; sourceTree = "<group>"; };
+		5BB14F69275914F400C673B3 /* CommandV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandV2.swift; sourceTree = "<group>"; };
+		5BB14F6B275914F400C673B3 /* VersionsCommandResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionsCommandResponse.swift; sourceTree = "<group>"; };
+		5BB14F6C275914F400C673B3 /* ShouldActionCompleteResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShouldActionCompleteResponse.swift; sourceTree = "<group>"; };
+		5BB14F6D275914F400C673B3 /* SensorCommandResponseV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorCommandResponseV2.swift; sourceTree = "<group>"; };
+		5BB14F6E275914F400C673B3 /* SensorCommandResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorCommandResponse.swift; sourceTree = "<group>"; };
+		5BB14F6F275914F400C673B3 /* SensorMaskCommandResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMaskCommandResponse.swift; sourceTree = "<group>"; };
+		5BB14F70275914F400C673B3 /* PowerStateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerStateResponse.swift; sourceTree = "<group>"; };
+		5BB14F71275914F400C673B3 /* CollisionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionData.swift; sourceTree = "<group>"; };
+		5BB14F73275914F400C673B3 /* CommandV1Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandV1Operation.swift; sourceTree = "<group>"; };
+		5BB14F74275914F400C673B3 /* CommandV1Sequencer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandV1Sequencer.swift; sourceTree = "<group>"; };
+		5BB14F75275914F400C673B3 /* CommandV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandV1.swift; sourceTree = "<group>"; };
+		5BB14F76275914F400C673B3 /* Double+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Utils.swift"; sourceTree = "<group>"; };
+		5BB14F77275914F400C673B3 /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		5BB14FA22759153B00C673B3 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		F40296A1B8B327531E8E4E85 /* Pods-GrapesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.debug.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +115,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		013BD1E79ABA09A44FD84808 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F40296A1B8B327531E8E4E85 /* Pods-GrapesApp.debug.xcconfig */,
+				1327E68B81410C23EFCBAA04 /* Pods-GrapesApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5BB14F222759146300C673B3 = {
 			isa = PBXGroup;
 			children = (
 				5BB14F2D2759146300C673B3 /* GrapesApp */,
 				5BB14F2C2759146300C673B3 /* Products */,
+				013BD1E79ABA09A44FD84808 /* Pods */,
+				C42018E35706F7CFAAD71CA3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +152,8 @@
 		5BB14F2D2759146300C673B3 /* GrapesApp */ = {
 			isa = PBXGroup;
 			children = (
+				5BB14FA22759153B00C673B3 /* SocketIOManager.swift */,
+				5BB14F42275914F400C673B3 /* SpheroStarter */,
 				5BB14F2E2759146300C673B3 /* AppDelegate.swift */,
 				5BB14F302759146300C673B3 /* SceneDelegate.swift */,
 				5BB14F322759146300C673B3 /* ViewController.swift */,
@@ -67,6 +165,156 @@
 			path = GrapesApp;
 			sourceTree = "<group>";
 		};
+		5BB14F42275914F400C673B3 /* SpheroStarter */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F44275914F400C673B3 /* Graph */,
+				5BB14F49275914F400C673B3 /* SpheroSDK */,
+			);
+			path = SpheroStarter;
+			sourceTree = "<group>";
+		};
+		5BB14F44275914F400C673B3 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F45275914F400C673B3 /* GraphView.swift */,
+				5BB14F46275914F400C673B3 /* CGContext+GraphLines.swift */,
+				5BB14F47275914F400C673B3 /* GraphSegment.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		5BB14F49275914F400C673B3 /* SpheroSDK */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F4A275914F400C673B3 /* SharedToyBox.swift */,
+				5BB14F4B275914F400C673B3 /* SDK */,
+			);
+			path = SpheroSDK;
+			sourceTree = "<group>";
+		};
+		5BB14F4B275914F400C673B3 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F4C275914F400C673B3 /* SDKUtils.swift */,
+				5BB14F4D275914F400C673B3 /* BLE */,
+				5BB14F63275914F400C673B3 /* Color+Utils.swift */,
+				5BB14F64275914F400C673B3 /* Commands */,
+				5BB14F76275914F400C673B3 /* Double+Utils.swift */,
+				5BB14F77275914F400C673B3 /* String+Utils.swift */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		5BB14F4D275914F400C673B3 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F4E275914F400C673B3 /* Toy */,
+				5BB14F60275914F400C673B3 /* CBUUID+SpheroUUIDs.swift */,
+				5BB14F61275914F400C673B3 /* ToyBox */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		5BB14F4E275914F400C673B3 /* Toy */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F4F275914F400C673B3 /* Toy.swift */,
+				5BB14F50275914F400C673B3 /* SensorControl.swift */,
+				5BB14F51275914F400C673B3 /* V1Toys */,
+				5BB14F57275914F400C673B3 /* V2Toys */,
+				5BB14F5F275914F400C673B3 /* ToyProtocols.swift */,
+			);
+			path = Toy;
+			sourceTree = "<group>";
+		};
+		5BB14F51275914F400C673B3 /* V1Toys */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F52275914F400C673B3 /* SPRKToy.swift */,
+				5BB14F53275914F400C673B3 /* SensorControlV1.swift */,
+				5BB14F54275914F400C673B3 /* SpheroV1Toy.swift */,
+				5BB14F55275914F400C673B3 /* SpheroV1ToyCore.swift */,
+				5BB14F56275914F400C673B3 /* BB8Toy.swift */,
+			);
+			path = V1Toys;
+			sourceTree = "<group>";
+		};
+		5BB14F57275914F400C673B3 /* V2Toys */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F58275914F400C673B3 /* SensorControlV2.swift */,
+				5BB14F59275914F400C673B3 /* BB9EToy.swift */,
+				5BB14F5A275914F400C673B3 /* SpheroV2Toy.swift */,
+				5BB14F5B275914F400C673B3 /* BoltToy.swift */,
+				5BB14F5C275914F400C673B3 /* R2D2Toy.swift */,
+				5BB14F5D275914F400C673B3 /* SpheroV2ToyCore.swift */,
+				5BB14F5E275914F400C673B3 /* MiniToy.swift */,
+			);
+			path = V2Toys;
+			sourceTree = "<group>";
+		};
+		5BB14F61275914F400C673B3 /* ToyBox */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F62275914F400C673B3 /* ToyBox.swift */,
+			);
+			path = ToyBox;
+			sourceTree = "<group>";
+		};
+		5BB14F64275914F400C673B3 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F65275914F400C673B3 /* SensorUtils.swift */,
+				5BB14F66275914F400C673B3 /* CommandV2 */,
+				5BB14F6A275914F400C673B3 /* CommandResponses */,
+				5BB14F72275914F400C673B3 /* CommandV1 */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		5BB14F66275914F400C673B3 /* CommandV2 */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F67275914F400C673B3 /* CommandOperationV2.swift */,
+				5BB14F68275914F400C673B3 /* CommandSequencerV2.swift */,
+				5BB14F69275914F400C673B3 /* CommandV2.swift */,
+			);
+			path = CommandV2;
+			sourceTree = "<group>";
+		};
+		5BB14F6A275914F400C673B3 /* CommandResponses */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F6B275914F400C673B3 /* VersionsCommandResponse.swift */,
+				5BB14F6C275914F400C673B3 /* ShouldActionCompleteResponse.swift */,
+				5BB14F6D275914F400C673B3 /* SensorCommandResponseV2.swift */,
+				5BB14F6E275914F400C673B3 /* SensorCommandResponse.swift */,
+				5BB14F6F275914F400C673B3 /* SensorMaskCommandResponse.swift */,
+				5BB14F70275914F400C673B3 /* PowerStateResponse.swift */,
+				5BB14F71275914F400C673B3 /* CollisionData.swift */,
+			);
+			path = CommandResponses;
+			sourceTree = "<group>";
+		};
+		5BB14F72275914F400C673B3 /* CommandV1 */ = {
+			isa = PBXGroup;
+			children = (
+				5BB14F73275914F400C673B3 /* CommandV1Operation.swift */,
+				5BB14F74275914F400C673B3 /* CommandV1Sequencer.swift */,
+				5BB14F75275914F400C673B3 /* CommandV1.swift */,
+			);
+			path = CommandV1;
+			sourceTree = "<group>";
+		};
+		C42018E35706F7CFAAD71CA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +322,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BB14F3F2759146400C673B3 /* Build configuration list for PBXNativeTarget "GrapesApp" */;
 			buildPhases = (
+				B027BA5502B9C04C9C38B795 /* [CP] Check Pods Manifest.lock */,
 				5BB14F272759146300C673B3 /* Sources */,
 				5BB14F282759146300C673B3 /* Frameworks */,
 				5BB14F292759146300C673B3 /* Resources */,
+				D00BFF26D399A87031D4B77A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,14 +383,96 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B027BA5502B9C04C9C38B795 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GrapesApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D00BFF26D399A87031D4B77A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GrapesApp/Pods-GrapesApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GrapesApp/Pods-GrapesApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GrapesApp/Pods-GrapesApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5BB14F272759146300C673B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BB14FA1275914F400C673B3 /* String+Utils.swift in Sources */,
+				5BB14F98275914F400C673B3 /* SensorCommandResponseV2.swift in Sources */,
+				5BB14F8B275914F400C673B3 /* R2D2Toy.swift in Sources */,
+				5BB14F8A275914F400C673B3 /* BoltToy.swift in Sources */,
+				5BB14F83275914F400C673B3 /* SensorControlV1.swift in Sources */,
+				5BB14F7C275914F400C673B3 /* GraphSegment.swift in Sources */,
+				5BB14F81275914F400C673B3 /* SensorControl.swift in Sources */,
+				5BB14F80275914F400C673B3 /* Toy.swift in Sources */,
+				5BB14F7B275914F400C673B3 /* CGContext+GraphLines.swift in Sources */,
+				5BB14F9F275914F400C673B3 /* CommandV1.swift in Sources */,
+				5BB14F7A275914F400C673B3 /* GraphView.swift in Sources */,
+				5BB14F7E275914F400C673B3 /* SharedToyBox.swift in Sources */,
+				5BB14F93275914F400C673B3 /* CommandOperationV2.swift in Sources */,
+				5BB14F92275914F400C673B3 /* SensorUtils.swift in Sources */,
+				5BB14F8D275914F400C673B3 /* MiniToy.swift in Sources */,
 				5BB14F332759146300C673B3 /* ViewController.swift in Sources */,
+				5BB14F96275914F400C673B3 /* VersionsCommandResponse.swift in Sources */,
+				5BB14F89275914F400C673B3 /* SpheroV2Toy.swift in Sources */,
+				5BB14FA0275914F400C673B3 /* Double+Utils.swift in Sources */,
 				5BB14F2F2759146300C673B3 /* AppDelegate.swift in Sources */,
+				5BB14F84275914F400C673B3 /* SpheroV1Toy.swift in Sources */,
+				5BB14F9C275914F400C673B3 /* CollisionData.swift in Sources */,
+				5BB14F95275914F400C673B3 /* CommandV2.swift in Sources */,
+				5BB14F8E275914F400C673B3 /* ToyProtocols.swift in Sources */,
+				5BB14F8C275914F400C673B3 /* SpheroV2ToyCore.swift in Sources */,
+				5BB14F99275914F400C673B3 /* SensorCommandResponse.swift in Sources */,
+				5BB14F87275914F400C673B3 /* SensorControlV2.swift in Sources */,
+				5BB14F9D275914F400C673B3 /* CommandV1Operation.swift in Sources */,
+				5BB14F88275914F400C673B3 /* BB9EToy.swift in Sources */,
+				5BB14FA32759153B00C673B3 /* SocketIOManager.swift in Sources */,
+				5BB14F90275914F400C673B3 /* ToyBox.swift in Sources */,
+				5BB14F86275914F400C673B3 /* BB8Toy.swift in Sources */,
+				5BB14F9A275914F400C673B3 /* SensorMaskCommandResponse.swift in Sources */,
+				5BB14F8F275914F400C673B3 /* CBUUID+SpheroUUIDs.swift in Sources */,
+				5BB14F7F275914F400C673B3 /* SDKUtils.swift in Sources */,
+				5BB14F97275914F400C673B3 /* ShouldActionCompleteResponse.swift in Sources */,
+				5BB14F9B275914F400C673B3 /* PowerStateResponse.swift in Sources */,
+				5BB14F85275914F400C673B3 /* SpheroV1ToyCore.swift in Sources */,
 				5BB14F312759146300C673B3 /* SceneDelegate.swift in Sources */,
+				5BB14F94275914F400C673B3 /* CommandSequencerV2.swift in Sources */,
+				5BB14F82275914F400C673B3 /* SPRKToy.swift in Sources */,
+				5BB14F9E275914F400C673B3 /* CommandV1Sequencer.swift in Sources */,
+				5BB14F91275914F400C673B3 /* Color+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +616,7 @@
 		};
 		5BB14F402759146400C673B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F40296A1B8B327531E8E4E85 /* Pods-GrapesApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,6 +645,7 @@
 		};
 		5BB14F412759146400C673B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1327E68B81410C23EFCBAA04 /* Pods-GrapesApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

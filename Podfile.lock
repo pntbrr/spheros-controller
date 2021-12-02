@@ -1,0 +1,24 @@
+PODS:
+  - ImageDetect (1.1.4)
+  - Socket.IO-Client-Swift (15.2.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.1)
+
+DEPENDENCIES:
+  - ImageDetect
+  - Socket.IO-Client-Swift (~> 15.2.0)
+
+SPEC REPOS:
+  trunk:
+    - ImageDetect
+    - Socket.IO-Client-Swift
+    - Starscream
+
+SPEC CHECKSUMS:
+  ImageDetect: cff4ef43d8cb22cb5bfdd3134f4224f637c3d372
+  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+
+PODFILE CHECKSUM: fdcb0326a94d4eadd90a42dc34892c421dac5dac
+
+COCOAPODS: 1.11.2
