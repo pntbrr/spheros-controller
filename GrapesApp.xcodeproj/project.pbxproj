@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B26DF6E275A22900093271F /* GlobalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B26DF6D275A22900093271F /* GlobalManager.swift */; };
 		5BB14F2F2759146300C673B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F2E2759146300C673B3 /* AppDelegate.swift */; };
 		5BB14F312759146300C673B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F302759146300C673B3 /* SceneDelegate.swift */; };
 		5BB14F332759146300C673B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F322759146300C673B3 /* ViewController.swift */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		1327E68B81410C23EFCBAA04 /* Pods-GrapesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.release.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.release.xcconfig"; sourceTree = "<group>"; };
 		2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrapesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B26DF6D275A22900093271F /* GlobalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalManager.swift; sourceTree = "<group>"; };
 		5BB14F2B2759146300C673B3 /* GrapesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrapesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB14F2E2759146300C673B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BB14F302759146300C673B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				5BB14F372759146400C673B3 /* Assets.xcassets */,
 				5BB14F392759146400C673B3 /* LaunchScreen.storyboard */,
 				5BB14F3C2759146400C673B3 /* Info.plist */,
+				5B26DF6D275A22900093271F /* GlobalManager.swift */,
 			);
 			path = GrapesApp;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				5BB14F8A275914F400C673B3 /* BoltToy.swift in Sources */,
 				5BB14F83275914F400C673B3 /* SensorControlV1.swift in Sources */,
 				5BB14F7C275914F400C673B3 /* GraphSegment.swift in Sources */,
+				5B26DF6E275A22900093271F /* GlobalManager.swift in Sources */,
 				5BB14F81275914F400C673B3 /* SensorControl.swift in Sources */,
 				5BB14F80275914F400C673B3 /* Toy.swift in Sources */,
 				5BB14F7B275914F400C673B3 /* CGContext+GraphLines.swift in Sources */,

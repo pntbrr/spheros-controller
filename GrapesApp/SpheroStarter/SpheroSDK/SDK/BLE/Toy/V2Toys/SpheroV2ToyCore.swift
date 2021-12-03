@@ -72,7 +72,11 @@ class SpheroV2ToyCore: NSObject, CBPeripheralDelegate {
     }
     
     func send(_ command: CommandV2) {
-        let commandOperation = CommandOperationV2(command, toyCore: self, commandSequencer: commandSequencer, characteristic: commandsCharacteristic)
+        guard let cc = commandsCharacteristic else {
+            print("commandsCharacteristic is nil")
+            return
+        }
+        let commandOperation = CommandOperationV2(command, toyCore: self, commandSequencer: commandSequencer, characteristic: cc)
         commandQueue.addOperation(commandOperation)
     }
     

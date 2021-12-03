@@ -184,7 +184,7 @@ public class CommandSequencerV2 {
         if currentData.count == 0 {
             if byte != APIV2Constants.startOfPacket {
                 skippedData = true
-                print("current data was empty but first byte was not SOP")
+                //print("current data was empty but first byte was not SOP")
                 return
             }
         }
@@ -192,14 +192,14 @@ public class CommandSequencerV2 {
         switch byte {
         case APIV2Constants.startOfPacket:
             if parsingState != .waitingForStartOfPacket {
-                print("got SOP but parser state was not waiting for it")
+                //print("got SOP but parser state was not waiting for it")
                 reset()
                 return
             }
             
             if skippedData {
                 skippedData = false
-                print("skipped data, not sure what this means")
+                //print("skipped data, not sure what this means")
             }
             
             parsingState = .waitingForEndOfPacket

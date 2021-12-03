@@ -37,7 +37,6 @@ class SharedToyBox {
     func stopScan() {
         box.stopScan()
     }
-    
 }
 
 extension SharedToyBox:ToyBoxListener{
