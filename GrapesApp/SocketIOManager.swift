@@ -10,19 +10,22 @@ import Foundation
 import SocketIO
 
 class SocketIOManager {
-    let socketioManager = SocketManager(socketURL: URL(string: "http://192.168.3.1:3000")!, config: SocketIOClientConfiguration(arrayLiteral: .log(false), .compress))
+    let socketioManager = SocketManager(socketURL: URL(string: "http://192.168.2.1:3000")!, config: SocketIOClientConfiguration(arrayLiteral: .log(false), .compress))
     var socket: SocketIOClient
     var isConnected = false
     
     static let instance = SocketIOManager()
+    
     
     init() {
         socket = socketioManager.defaultSocket
         
         socket.on(clientEvent: .connect) {data, ack in
             print("socket connected yay")
-            self.socket.emit("hello", with: [["device": "iPhone"]])
+            self.socket.emit("hello", with: [["device": "spheros"]])
             self.isConnected = true
+            
+            
         }
         socket.on(clientEvent: .disconnect) { data, ack in
             print("socket disconnected arrrrrgh")

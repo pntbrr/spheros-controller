@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        global.delegate = self
+        
         socketIOconnectionLabel.text = socketIO.isConnected ? "SocketIO connected" : "SocketIO disconnected"
     }
     
@@ -32,9 +34,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func connectionSpheroButtonClicked(_ sender: Any) {
-        global.connectSpheros {
-            self.spherosConnectionLabel.text = "Spheros Connected"
-        }
+        global.connectSpheros()
     }
     
     @IBAction func growSenderClicked(_ sender: Any) {
@@ -48,3 +48,8 @@ class ViewController: UIViewController {
 }
 
 
+extension ViewController: GlobalManagerDelegate {
+    func spherosConnected() {
+        self.spherosConnectionLabel.text = "Spheros Connected"
+    }
+}
