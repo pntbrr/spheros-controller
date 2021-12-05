@@ -7,6 +7,13 @@
 
 import UIKit
 
+struct Axes:Codable {
+    let x:Float,y:Float,z:Float
+    func toString() -> String {
+        return "\(x);\(y);\(z)"
+    }
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var socketIOconnectionLabel: UILabel!
@@ -46,5 +53,3 @@ class ViewController: UIViewController {
         makeWineLabel.text = global.isListening ? "Make wine started" : "Make wine stopped"
     }
 }
-
-
