@@ -1,0 +1,3 @@
+[submodule "BlueSTSDK"]
+	path = BlueSTSDK
+	url = https://github.com/STMicroelectronics/BlueSTSDK_iOS.git

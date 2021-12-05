@@ -55,7 +55,40 @@
 		5BB14FA1275914F400C673B3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F77275914F400C673B3 /* String+Utils.swift */; };
 		5BB14FA32759153B00C673B3 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14FA22759153B00C673B3 /* SocketIOManager.swift */; };
 		BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */; };
+		FFA3D71F275D2B6700902B3C /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */; platformFilter = ios; };
+		FFA3D720275D2B6700902B3C /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FFA3D718275D2B4500902B3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 665241F01B0B1BB100931F93;
+			remoteInfo = BlueSTSDK;
+		};
+		FFA3D71A275D2B4500902B3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 665241FB1B0B1BB100931F93;
+			remoteInfo = BlueSTSDKTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FFA3D721275D2B6700902B3C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FFA3D720275D2B6700902B3C /* BlueSTSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1327E68B81410C23EFCBAA04 /* Pods-GrapesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.release.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +143,7 @@
 		5BB14F77275914F400C673B3 /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		5BB14FA22759153B00C673B3 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		F40296A1B8B327531E8E4E85 /* Pods-GrapesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.debug.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueSTSDK.xcodeproj; path = BlueSTSDK/BlueSTSDK/BlueSTSDK.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFA3D71F275D2B6700902B3C /* BlueSTSDK.framework in Frameworks */,
 				BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,9 +348,19 @@
 		C42018E35706F7CFAAD71CA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */,
 				2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFA3D714275D2B4500902B3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */,
+				FFA3D71B275D2B4500902B3C /* BlueSTSDKTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +375,7 @@
 				5BB14F282759146300C673B3 /* Frameworks */,
 				5BB14F292759146300C673B3 /* Resources */,
 				D00BFF26D399A87031D4B77A /* [CP] Embed Pods Frameworks */,
+				FFA3D721275D2B6700902B3C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -366,12 +412,35 @@
 			mainGroup = 5BB14F222759146300C673B3;
 			productRefGroup = 5BB14F2C2759146300C673B3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FFA3D714275D2B4500902B3C /* Products */;
+					ProjectRef = FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5BB14F2A2759146300C673B3 /* GrapesApp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlueSTSDK.framework;
+			remoteRef = FFA3D718275D2B4500902B3C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FFA3D71B275D2B4500902B3C /* BlueSTSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BlueSTSDKTests.xctest;
+			remoteRef = FFA3D71A275D2B4500902B3C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5BB14F292759146300C673B3 /* Resources */ = {
@@ -626,20 +695,26 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3H4X68CBXA;
+				DEVELOPMENT_TEAM = L5Q78XY962;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrapesApp/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLE for Sphero";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To see and connect to the drone";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = studio.pnk.GrapesApp;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.pnk.testdrone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -655,20 +730,26 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3H4X68CBXA;
+				DEVELOPMENT_TEAM = L5Q78XY962;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrapesApp/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "BLE for Sphero";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To see and connect to the drone";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = studio.pnk.GrapesApp;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.pnk.testdrone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

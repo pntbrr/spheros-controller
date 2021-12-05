@@ -7,12 +7,14 @@
 
 import Foundation
 import UIKit
+import BlueSTSDK
+
 
 protocol GlobalManagerDelegate {
     func spherosConnected()
 }
 
-class GlobalManager {
+class GlobalManager: NSObject {
     
     static let instance = GlobalManager()
     
@@ -28,7 +30,16 @@ class GlobalManager {
     var winemakerIsDoing = false
     var lastTime:Double = 0.00
     
+    let manager = BlueSTSDKManager.sharedInstance
+    var features = [BlueSTSDKFeature]()
+    
     init() {
+        
+    }
+    
+    override init() {
+        super.init()
+        
         socketIO.socket.on(clientEvent: .connect) { data, ack in
             if self.allSpherosConnected { self.socketIO.emit(event: "spherosConnected")}
         }
@@ -52,6 +63,9 @@ class GlobalManager {
         }
         
         self.connectSpheros()
+        
+        manager.addDelegate(self)
+        manager.discoveryStart(35*1000)
     }
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
@@ -151,3 +165,79 @@ class GlobalManager {
         }
     }
 }
+
+
+
+
+extension GlobalManager: BlueSTSDKManagerDelegate {
+    func manager(_ manager: BlueSTSDKManager, didChangeDiscovery: Bool) {
+        
+    }
+
+    func manager(_ manager: BlueSTSDKManager, didDiscoverNode: BlueSTSDKNode) {
+        print(didDiscoverNode.advertiseInfo.name ?? "")
+        if let name = didDiscoverNode.advertiseInfo.name,
+           name == "BCN-774" {
+            didDiscoverNode.addStatusDelegate(self)
+            didDiscoverNode.connect()
+            manager.discoveryStop()
+        }
+    }
+    
+}
+
+extension GlobalManager: BlueSTSDKNodeStateDelegate {
+    func node(_ node: BlueSTSDKNode, didChange newState: BlueSTSDKNodeState, prevState: BlueSTSDKNodeState) {
+        
+        switch newState {
+        case .connected:
+            print("Connected!")
+            self.features = node.getFeatures()
+            print(self.features)
+            // Accelero
+            //self.features[2].add(self)
+           
+            self.features[4].add(self)
+            self.features[4].enableNotification()
+            // Accelero
+            self.features[3].add(self)
+            self.features[3].enableNotification()
+            
+            //self.features[12].add(self)
+            //self.features[12].enableNotification()
+            
+        default: break
+        }
+    }
+}
+
+
+extension GlobalManager:BlueSTSDKFeatureDelegate {
+    func didUpdate(_ feature: BlueSTSDKFeature, sample: BlueSTSDKFeatureSample) {
+        DispatchQueue.main.async {
+            var rotationRate: SIMD3 = [0.0,0.0,0.0]
+            
+            switch feature {
+            case is BlueSTSDKFeatureGyroscope:
+                break
+            case is BlueSTSDKFeatureAudioADPCM:
+                break
+            case is BlueSTSDKFeatureAudioADPCMSync:
+                break
+            case is BlueSTSDKFeatureAcceleration:
+                
+                let normalizedValues = sample.data.map{ $0.floatValue/1000.0 }
+                let axes = Axes(x: sample.data[0].floatValue, y: sample.data[1].floatValue, z: sample.data[2].floatValue)
+                
+//                print("\(axes)")
+            default:
+                return
+            }
+            
+        }
+        
+    }
+    
+    
+}
+
