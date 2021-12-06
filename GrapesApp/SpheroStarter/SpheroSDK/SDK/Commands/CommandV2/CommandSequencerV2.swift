@@ -211,7 +211,7 @@ public class CommandSequencerV2 {
             currentData.append(byteCopy)
 
             if parsingState != .waitingForEndOfPacket || currentData.count < 7 {
-                print("got EOP but parser state was not waiting for it")
+                //print("got EOP but parser state was not waiting for it")
                 reset()
                 return
             }
