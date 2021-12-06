@@ -55,21 +55,21 @@
 		5BB14FA1275914F400C673B3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F77275914F400C673B3 /* String+Utils.swift */; };
 		5BB14FA32759153B00C673B3 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14FA22759153B00C673B3 /* SocketIOManager.swift */; };
 		BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */; };
-		FFA3D71F275D2B6700902B3C /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */; platformFilter = ios; };
-		FFA3D720275D2B6700902B3C /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF80FC42275EC3500010F532 /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; platformFilter = ios; };
+		FF80FC43275EC3500010F532 /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FFA3D718275D2B4500902B3C /* PBXContainerItemProxy */ = {
+		FF80FC3E275EC3360010F532 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */;
+			containerPortal = FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 665241F01B0B1BB100931F93;
 			remoteInfo = BlueSTSDK;
 		};
-		FFA3D71A275D2B4500902B3C /* PBXContainerItemProxy */ = {
+		FF80FC40275EC3360010F532 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */;
+			containerPortal = FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 665241FB1B0B1BB100931F93;
 			remoteInfo = BlueSTSDKTests;
@@ -83,7 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FFA3D720275D2B6700902B3C /* BlueSTSDK.framework in Embed Frameworks */,
+				FF80FC43275EC3500010F532 /* BlueSTSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,7 +143,7 @@
 		5BB14F77275914F400C673B3 /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		5BB14FA22759153B00C673B3 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		F40296A1B8B327531E8E4E85 /* Pods-GrapesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.debug.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.debug.xcconfig"; sourceTree = "<group>"; };
-		FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueSTSDK.xcodeproj; path = BlueSTSDK/BlueSTSDK/BlueSTSDK.xcodeproj; sourceTree = "<group>"; };
+		FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueSTSDK.xcodeproj; path = BlueSTSDK/BlueSTSDK/BlueSTSDK.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFA3D71F275D2B6700902B3C /* BlueSTSDK.framework in Frameworks */,
+				FF80FC42275EC3500010F532 /* BlueSTSDK.framework in Frameworks */,
 				BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +189,7 @@
 		5BB14F2D2759146300C673B3 /* GrapesApp */ = {
 			isa = PBXGroup;
 			children = (
+				FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */,
 				5BB14FA22759153B00C673B3 /* SocketIOManager.swift */,
 				5BB14F42275914F400C673B3 /* SpheroStarter */,
 				5BB14F2E2759146300C673B3 /* AppDelegate.swift */,
@@ -348,17 +349,16 @@
 		C42018E35706F7CFAAD71CA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */,
 				2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FFA3D714275D2B4500902B3C /* Products */ = {
+		FF80FC3A275EC3360010F532 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */,
-				FFA3D71B275D2B4500902B3C /* BlueSTSDKTests.xctest */,
+				FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */,
+				FF80FC41275EC3360010F532 /* BlueSTSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -414,8 +414,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FFA3D714275D2B4500902B3C /* Products */;
-					ProjectRef = FFA3D713275D2B4500902B3C /* BlueSTSDK.xcodeproj */;
+					ProductGroup = FF80FC3A275EC3360010F532 /* Products */;
+					ProjectRef = FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -426,18 +426,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FFA3D719275D2B4500902B3C /* BlueSTSDK.framework */ = {
+		FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = BlueSTSDK.framework;
-			remoteRef = FFA3D718275D2B4500902B3C /* PBXContainerItemProxy */;
+			remoteRef = FF80FC3E275EC3360010F532 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FFA3D71B275D2B4500902B3C /* BlueSTSDKTests.xctest */ = {
+		FF80FC41275EC3360010F532 /* BlueSTSDKTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = BlueSTSDKTests.xctest;
-			remoteRef = FFA3D71A275D2B4500902B3C /* PBXContainerItemProxy */;
+			remoteRef = FF80FC40275EC3360010F532 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

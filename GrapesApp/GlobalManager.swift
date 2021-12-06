@@ -32,10 +32,7 @@ class GlobalManager: NSObject {
     
     let manager = BlueSTSDKManager.sharedInstance
     var features = [BlueSTSDKFeature]()
-    
-    init() {
-        
-    }
+
     
     override init() {
         super.init()
