@@ -55,8 +55,8 @@
 		5BB14FA1275914F400C673B3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14F77275914F400C673B3 /* String+Utils.swift */; };
 		5BB14FA32759153B00C673B3 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB14FA22759153B00C673B3 /* SocketIOManager.swift */; };
 		BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */; };
-		FF80FC42275EC3500010F532 /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; platformFilter = ios; };
-		FF80FC43275EC3500010F532 /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FF47AC0D275FE88500E32E2C /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; platformFilter = ios; };
+		FF47AC0E275FE88500E32E2C /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +77,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FFA3D721275D2B6700902B3C /* Embed Frameworks */ = {
+		FF47AC0F275FE88500E32E2C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FF80FC43275EC3500010F532 /* BlueSTSDK.framework in Embed Frameworks */,
+				FF47AC0E275FE88500E32E2C /* BlueSTSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,7 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF80FC42275EC3500010F532 /* BlueSTSDK.framework in Frameworks */,
+				FF47AC0D275FE88500E32E2C /* BlueSTSDK.framework in Frameworks */,
 				BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +375,7 @@
 				5BB14F282759146300C673B3 /* Frameworks */,
 				5BB14F292759146300C673B3 /* Resources */,
 				D00BFF26D399A87031D4B77A /* [CP] Embed Pods Frameworks */,
-				FFA3D721275D2B6700902B3C /* Embed Frameworks */,
+				FF47AC0F275FE88500E32E2C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -714,7 +714,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ptbrr.spheros;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pntbrr.spheros;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -749,7 +749,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ptbrr.spheros;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pntbrr.spheros;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
