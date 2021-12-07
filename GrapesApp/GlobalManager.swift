@@ -59,30 +59,32 @@ class GlobalManager: NSObject {
             self.isListening = true
         }
         
-        self.connectSpheros()
-        
-        manager.addDelegate(self)
-        manager.discoveryStart(35*1000)
+        self.connectSpheros {
+            self.socketIO.connect()
+            
+            self.manager.addDelegate(self)
+            self.manager.discoveryStart(35*1000)
+        }
     }
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
         // SB-313C - SB-A729
-        SharedToyBox.instance.searchForBoltsNamed(["SB-A729", "SB-6C4C"]) { err in
+        SharedToyBox.instance.searchForBoltsNamed(["SB-6C4C"]) { err in
+            print("hey")
             if err == nil {
-                self.delegate?.spherosConnected()
-                spherosConnected?()
-                
-                if(SharedToyBox.instance.bolts.count == 2) {
-                    self.allSpherosConnected = true
-
+                if(SharedToyBox.instance.bolts.count == 1) {
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
-                        
                         if let name = bolt.peripheral?.name {
                             switch name {
-                                case "SB-A729":
+                                case "SB-6C4C":
                                     self.grapeBolt = bolt
-                                    bolt.sensorControl.enable(sensors: SensorMask.init(arrayLiteral: .accelerometer,.gyro))
+                                    bolt.sensorControl.disable()
+                                    // Forçage pour éviter le glitch
+                                    bolt.sensorControl.enable(sensors: SensorMask.init(arrayLiteral: .accelerometer))
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                        bolt.sensorControl.enable(sensors: SensorMask.init(arrayLiteral: .accelerometer))
+                                    }
                                     bolt.sensorControl.interval = 1
                                     bolt.sensorControl.onDataReady = { data in
                                         DispatchQueue.main.async {
@@ -92,17 +94,20 @@ class GlobalManager: NSObject {
                                     bolt.setFrontLed(color: .green)
                                     bolt.setBackLed(color: .green)
                                     break;
-                                case "SB-6C4C":
-                                    self.shakeBolt = bolt
-                                    bolt.setFrontLed(color: .red)
-                                    bolt.setBackLed(color: .red)
-                                    break;
+    //                                case "SB-6C4C":
+    //                                    self.shakeBolt = bolt
+    //                                    bolt.setFrontLed(color: .red)
+    //                                    bolt.setBackLed(color: .red)
+    //                                    break;
                                 default:
                                     break;
                             }
                         }
                     }
-                    self.socketIO.connect()
+                    
+                    self.delegate?.spherosConnected()
+                    spherosConnected?()
+                    self.allSpherosConnected = true
                 } else {
                     print("Missed to connect to all spheros needed")
                 }
@@ -113,7 +118,7 @@ class GlobalManager: NSObject {
     }
     
     func grapesChanging(color: UIColor, duration: Double?) {
-        var timing:Double = 60/64
+        var timing:Double = 10/64
         if let duration = duration {
             timing = duration/64 // = droneDuration/64
         }
@@ -134,7 +139,7 @@ class GlobalManager: NSObject {
     }
     
     func onData(data: SensorControlData) {
-        if self.currentStep == "press" {
+        if  ["press", "shake"].contains(self.currentStep) {
             if let acceleration = data.accelerometer?.filteredAcceleration {
 
                 if let z = acceleration.z,
@@ -143,14 +148,16 @@ class GlobalManager: NSObject {
                     
                     let absSum = abs(x)+abs(y)+abs(z)
                     
-                    if (absSum >= 2) {
+                    if (self.currentStep == "press" && absSum >= 2) {
                         if(!winemakerIsDoing) {
                             winemakerIsDoing = true
                             self.socketIO.emit(event: "winemaker", data: 1)
                         }
                         lastTime = NSDate.timeIntervalSinceReferenceDate
+                    } else if (self.currentStep == "shake" && absSum >= 3) {
+                        self.socketIO.emit(event: "shake", data: absSum)
                     }
-                    
+                     
                     if(NSDate.timeIntervalSinceReferenceDate - lastTime > 0.5) {
                         if(winemakerIsDoing) {
                             winemakerIsDoing = false
