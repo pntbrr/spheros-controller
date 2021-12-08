@@ -26,6 +26,12 @@ class GlobalManager: NSObject {
     var currentStep = "idle"
     var grapeBolt:BoltToy?
     var shakeBolt:BoltToy?
+    
+    let greenGrape:UIColor = UIColor(red: 150/255, green: 255/255, blue: 10/255, alpha: 1)
+    let purpleGrape:UIColor = UIColor(red: 175/255, green: 0/255, blue: 255/255, alpha: 1)
+    let wineColor:UIColor = UIColor(red: 60/255, green: 2/255, blue: 3/255, alpha: 1)
+    var currentColor:UIColor?
+    
     var isListening = false
     var winemakerIsDoing = false
     var lastTime:Double = 0.00
@@ -36,6 +42,8 @@ class GlobalManager: NSObject {
     
     override init() {
         super.init()
+        
+        self.currentColor = greenGrape
         
         socketIO.socket.on(clientEvent: .connect) { data, ack in
             if self.allSpherosConnected { self.socketIO.emit(event: "spherosConnected")}
@@ -48,11 +56,13 @@ class GlobalManager: NSObject {
         }
         
         socketIO.socket.on("grow", callback: { data, ack in
-            self.grapesChanging(color: .green, duration: nil)
+            self.grapesChanging(color: self.purpleGrape, duration: 10)
+
         })
+    
         socketIO.socket.on("solar", callback: { data, ack in
-            let duration = data.count > 0 ? data[0] as? Double : nil
-            self.grapesChanging(color: .purple, duration: duration)
+            let duration = data.count > 0 ? data[0] as? Int : nil
+            self.grapesChanging(color: .purple, duration: duration ?? 10)
         })
         
         socketIO.socket.on("press") { data, ack in
@@ -68,20 +78,27 @@ class GlobalManager: NSObject {
     }
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
-        // SB-313C - SB-A729
-        SharedToyBox.instance.searchForBoltsNamed(["SB-6C4C"]) { err in
-            print("hey")
+        // SB-313C - SB-A729 - SB-6C4C
+        SharedToyBox.instance.searchForBoltsNamed(["SB-A729", "SB-313C"]) { err in
             if err == nil {
-                if(SharedToyBox.instance.bolts.count == 1) {
+                if(SharedToyBox.instance.bolts.count == 2) {
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
                         if let name = bolt.peripheral?.name {
                             switch name {
-                                case "SB-6C4C":
+                                case "SB-A729":
                                     self.grapeBolt = bolt
+                                
+                                    if let color = self.currentColor {
+                                        bolt.setMainLed(color: color)
+                                        bolt.setFrontLed(color: color)
+                                        bolt.setBackLed(color: color)
+                                    }
+
                                     bolt.sensorControl.disable()
                                     // Forçage pour éviter le glitch
                                     bolt.sensorControl.enable(sensors: SensorMask.init(arrayLiteral: .accelerometer))
+                                    bolt.sensorControl.disable()
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                         bolt.sensorControl.enable(sensors: SensorMask.init(arrayLiteral: .accelerometer))
                                     }
@@ -91,14 +108,12 @@ class GlobalManager: NSObject {
                                             self.onData(data: data)
                                         }
                                     }
-                                    bolt.setFrontLed(color: .green)
-                                    bolt.setBackLed(color: .green)
                                     break;
-    //                                case "SB-6C4C":
-    //                                    self.shakeBolt = bolt
-    //                                    bolt.setFrontLed(color: .red)
-    //                                    bolt.setBackLed(color: .red)
-    //                                    break;
+                                case "SB-6C4C":
+                                    self.shakeBolt = bolt
+                                    bolt.setFrontLed(color: .red)
+                                    bolt.setBackLed(color: .red)
+                                    break;
                                 default:
                                     break;
                             }
@@ -117,18 +132,17 @@ class GlobalManager: NSObject {
         }
     }
     
-    func grapesChanging(color: UIColor, duration: Double?) {
-        var timing:Double = 10/64
-        if let duration = duration {
-            timing = duration/64 // = droneDuration/64
-        }
+    func grapesChanging(color: UIColor, duration: Int) {
+        let timing = duration/64 // = droneDuration/64
         var count = 0
+        
+        let interpolationArray = self.colorInterpolation(duration: duration)
         
         for y in 0...7 {
             for x in 0...7 {
                 //let sum = timing * Double(count)
                 //print([count, sum])
-                DispatchQueue.main.asyncAfter(deadline: .now() + timing * Double(count)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(timing * count)) {
                     if let bolt = self.grapeBolt {
                         bolt.drawMatrix(pixel: Pixel(x: x, y: y), color: color)
                     }
@@ -166,6 +180,49 @@ class GlobalManager: NSObject {
                     }
                 }
             }
+        }
+    }
+    
+    func colorInterpolation(duration:Int = 1) -> [UIColor] {
+        // pour 1s 30 x 33ms
+        let steps = 30 * duration
+        var interpolationArray:[UIColor] = []
+        
+        let color1 = greenGrape.rgbValues()
+        let color2 = purpleGrape.rgbValues()
+        
+        let pasR = (color2.r - color1.r) / CGFloat(steps)
+        let pasG = (color2.g - color1.g) / CGFloat(steps)
+        let pasB = (color2.b - color1.b) / CGFloat(steps)
+        
+        var currentR = color1.r
+        var currentG = color1.g
+        var currentB = color1.b
+        
+        for _ in 0...(steps-1) {
+   
+            currentR += pasR
+            currentG += pasG
+            currentB += pasB
+                                                
+            let color:UIColor = UIColor(red: currentR, green: currentG, blue: currentB, alpha: 1)
+                                
+            interpolationArray.append(color)
+        }
+        
+        return interpolationArray
+    }
+    
+    func round(n: CGFloat, type: String = "default") -> CGFloat {
+        switch type {
+        case "decimal":
+            return CGFloat(Darwin.round(10 * n) / 10)
+        case "hundredth":
+            return CGFloat(Darwin.round(100 * n) / 100)
+        case "thousandth":
+            return CGFloat(Darwin.round(1000 * n) / 1000)
+        default:
+            return Darwin.round(n)
         }
     }
 }
