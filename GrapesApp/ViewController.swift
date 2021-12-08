@@ -45,8 +45,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func growSenderClicked(_ sender: Any) {
-        socketIO.emit(event: "leds")
+        //socketIO.emit(event: "leds")
         //global.colorInterpolation(duration: 5)
+        //global.grapesChanging(color: global.purpleGrape, duration: 10)
     }
     
     @IBAction func makeWineClicked(_ sender: Any) {
