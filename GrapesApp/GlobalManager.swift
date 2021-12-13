@@ -161,18 +161,22 @@ class GlobalManager: NSObject {
     
     func grapesfillsUpSugar(color: UIColor, duration: Int) {
         let timing = Double(duration)/64 // = droneDuration/64
-        print(timing)
+        let ms = Int((timing.truncatingRemainder(dividingBy: 1.0)) * 1000)
         var count:Double = 0
+        
+        print(duration)
+        print(ms)
         
         if let bolt = self.grapeBolt {
             bolt.setFrontLed(color: color)
             bolt.setBackLed(color: color)
-            for y in 0...7 {
-                for x in 0...7 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(timing * count)) {
-                         bolt.drawMatrix(pixel: Pixel(x: x, y: y), color: color)
+            DispatchQueue.main.async {
+                for y in 0...7 {
+                    for x in 0...7 {
+                            bolt.drawMatrix(pixel: Pixel(x: x, y: y), color: color)
+                            count+=1
+                            usleep(useconds_t((ms - 36) * 1000))
                     }
-                    count+=1
                 }
             }
         }
@@ -182,20 +186,20 @@ class GlobalManager: NSObject {
     func onData(data: SensorControlData) {
         if ["press", "shake"].contains(self.currentStep) {
             if let acceleration = data.accelerometer?.filteredAcceleration {
-
+                
                 if let z = acceleration.z,
                    let y = acceleration.y,
                    let x = acceleration.x {
                     
                     let absSum = abs(x)+abs(y)+abs(z)
                     
-                    if (self.currentStep == "press" && absSum >= 2) {
+                    if (self.currentStep == "press" && absSum >= 1.8) {
                         if(!winemakerIsDoing) {
                             winemakerIsDoing = true
                             self.socketIO.emit(event: "winemaker", data: 1)
                         }
                         lastTime = NSDate.timeIntervalSinceReferenceDate
-                    } else if (self.currentStep == "shake" && absSum >= 3) {
+                    } else if (self.currentStep == "shake" && absSum >= 2) {
                         self.socketIO.emit(event: "shake", data: absSum)
                     }
                      
