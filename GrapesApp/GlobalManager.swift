@@ -21,6 +21,8 @@ class GlobalManager: NSObject {
     var delegate: GlobalManagerDelegate?
     
     let socketIO = SocketIOManager.instance
+    let blueSTSDKmanager = BlueSTSDKManager.sharedInstance
+    var blueSTSDKfeatures = [BlueSTSDKFeature]()
     
     var allSpherosConnected = false
     var currentStep = "idle"
@@ -32,18 +34,23 @@ class GlobalManager: NSObject {
     let wineColor:UIColor = UIColor(red: 60/255, green: 2/255, blue: 3/255, alpha: 1)
     var currentColor:UIColor?
     
+    // Press part
     var isListening = false
     var winemakerIsDoing = false
     var lastTime:Double = 0.00
     
-    let manager = BlueSTSDKManager.sharedInstance
-    var features = [BlueSTSDKFeature]()
-
+    // Shake part
+    
+    // Pour part
     
     override init() {
         super.init()
         
         self.currentColor = greenGrape
+        
+        self.blueSTSDKmanager.addDelegate(self)
+        self.blueSTSDKmanager.discoveryStart()
+        //self.manager.discoveryStart(35*1000)
         
         socketIO.socket.on(clientEvent: .connect) { data, ack in
             if self.allSpherosConnected { self.socketIO.emit(event: "spherosConnected")}
@@ -64,16 +71,9 @@ class GlobalManager: NSObject {
             self.grapesfillsUpSugar(color: self.wineColor, duration: duration ?? 10)
         })
         
-        socketIO.socket.on("press") { data, ack in
-            self.isListening = true
-        }
-        
         self.connectSpheros {
             self.socketIO.connect()
         }
-        
-        //self.manager.addDelegate(self)
-        //self.manager.discoveryStart(35*1000)
     }
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
@@ -196,17 +196,17 @@ class GlobalManager: NSObject {
                     if (self.currentStep == "press" && absSum >= 1.8) {
                         if(!winemakerIsDoing) {
                             winemakerIsDoing = true
-                            self.socketIO.emit(event: "winemaker", data: 1)
+                            self.socketIO.emit(event: "pressing", data: 1)
                         }
                         lastTime = NSDate.timeIntervalSinceReferenceDate
                     } else if (self.currentStep == "shake" && absSum >= 2) {
-                        self.socketIO.emit(event: "shake", data: absSum)
+                        self.socketIO.emit(event: "shaking", data: absSum)
                     }
                      
                     if(NSDate.timeIntervalSinceReferenceDate - lastTime > 0.5) {
                         if(winemakerIsDoing) {
                             winemakerIsDoing = false
-                            self.socketIO.emit(event: "winemaker", data: 0)
+                            self.socketIO.emit(event: "pressing", data: 0)
                         }
                     }
                 }
@@ -247,15 +247,13 @@ class GlobalManager: NSObject {
 }
 
 
-
-
 extension GlobalManager: BlueSTSDKManagerDelegate {
     func manager(_ manager: BlueSTSDKManager, didChangeDiscovery: Bool) {
         
     }
 
     func manager(_ manager: BlueSTSDKManager, didDiscoverNode: BlueSTSDKNode) {
-        print(didDiscoverNode.advertiseInfo.name ?? "")
+        print(didDiscoverNode.advertiseInfo.name ?? "untitled")
         if let name = didDiscoverNode.advertiseInfo.name,
            name == "BCN-774" {
             didDiscoverNode.addStatusDelegate(self)
@@ -271,21 +269,31 @@ extension GlobalManager: BlueSTSDKNodeStateDelegate {
         
         switch newState {
         case .connected:
-            print("Connected!")
-            self.features = node.getFeatures()
-            print(self.features)
+            print("BLUESTSDK Connected!")
+            self.socketIO.emit(event: "bluetileConnected")
+            self.blueSTSDKmanager.discoveryStop()
+            
+            self.blueSTSDKfeatures = node.getFeatures()
+            print(self.blueSTSDKfeatures)
             // Accelero
             //self.features[2].add(self)
-           
-            self.features[4].add(self)
-            self.features[4].enableNotification()
+            self.blueSTSDKfeatures[4].add(self)
+            self.blueSTSDKfeatures[4].enableNotification()
             // Accelero
-            self.features[3].add(self)
-            self.features[3].enableNotification()
+            self.blueSTSDKfeatures[3].add(self)
+            self.blueSTSDKfeatures[3].enableNotification()
             
             //self.features[12].add(self)
             //self.features[12].enableNotification()
             
+        case .disconnecting, .unreachable:
+            print("BLUESTSDK Disconnected!")
+            self.socketIO.emit(event: "bluetileDisconnected")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.blueSTSDKmanager.discoveryStart()
+                print(self.blueSTSDKmanager.isDiscovering)
+            }
+            break;
         default: break
         }
     }
@@ -310,8 +318,8 @@ extension GlobalManager:BlueSTSDKFeatureDelegate {
                 let axes = Axes(x: sample.data[0].floatValue, y: sample.data[1].floatValue, z: sample.data[2].floatValue)
                 if self.currentStep == "pour water" {
                     self.socketIO.emit(event: "pouring", data: axes.z)
+                    print("\(axes.z)")
                 }
-                print("\(axes.z)")
             default:
                 return
             }
