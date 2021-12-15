@@ -122,6 +122,7 @@ class GlobalManager: NSObject {
                     self.allSpherosConnected = true
                 } else {
                     print("Missed to connect to all spheros needed")
+                    
                 }
             } else {
                 print("Failed to connect : \(err)")
@@ -193,13 +194,12 @@ class GlobalManager: NSObject {
     }
     
     func onData(data: SensorControlData) {
-        if ["press", "shake"].contains(self.currentStep) {
+        if ["get on", "press", "shake"].contains(self.currentStep) {
             if let acceleration = data.accelerometer?.filteredAcceleration {
                 
                 if let z = acceleration.z,
                    let y = acceleration.y,
                    let x = acceleration.x {
-                    
                     let absSum = abs(x)+abs(y)+abs(z)
                     
                     if (self.currentStep == "press" && absSum >= 1.8) {
@@ -210,6 +210,8 @@ class GlobalManager: NSObject {
                         lastTime = NSDate.timeIntervalSinceReferenceDate
                     } else if (self.currentStep == "shake" && absSum >= 2) {
                         self.socketIO.emit(event: "shaking", data: absSum)
+                    } else if (self.currentStep == "get on" && absSum >= 2) {
+                        self.socketIO.emit(event: "get on", data: absSum)
                     }
                      
                     if(NSDate.timeIntervalSinceReferenceDate - lastTime > 0.5) {
