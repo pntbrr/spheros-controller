@@ -26,11 +26,11 @@ class GlobalManager: NSObject {
     
     var allSpherosConnected = false
     var currentStep = "idle"
-    var grapeBolt:BoltToy?
+    var mainBolt:BoltToy?
     var shakeBolt:BoltToy?
     
     let greenGrape:UIColor = UIColor(red: 150/255, green: 255/255, blue: 10/255, alpha: 1)
-    let purpleGrape:UIColor = UIColor(red: 175/255, green: 0/255, blue: 255/255, alpha: 1)
+    let purpleGrape:UIColor = UIColor(red: 140/255, green: 0/255, blue: 205/255, alpha: 1)
     let wineColor:UIColor = UIColor(red: 60/255, green: 2/255, blue: 3/255, alpha: 1)
     var currentColor:UIColor?
     
@@ -38,10 +38,6 @@ class GlobalManager: NSObject {
     var isListening = false
     var winemakerIsDoing = false
     var lastTime:Double = 0.00
-    
-    // Shake part
-    
-    // Pour part
     
     override init() {
         super.init()
@@ -63,7 +59,7 @@ class GlobalManager: NSObject {
         }
         
         socketIO.socket.on("grow", callback: { data, ack in
-            self.grapeRipens(color: self.purpleGrape, duration: 2)
+            self.grapeRipens(color: self.purpleGrape, duration: 10)
         })
     
         socketIO.socket.on("solar", callback: { data, ack in
@@ -78,22 +74,24 @@ class GlobalManager: NSObject {
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
         // SB-313C - SB-A729 - SB-6C4C
-                SharedToyBox.instance.searchForBoltsNamed(["SB-A729"]) { err in
+        SharedToyBox.instance.searchForBoltsNamed(["SB-A729", "SB-313C", "SB-6C4C"]) { err in
             if err == nil {
-                if(SharedToyBox.instance.bolts.count == 1) {
+                if(SharedToyBox.instance.bolts.count == 3) {
+                    
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
+                        
+                        if let color = self.currentColor {
+                            bolt.setMainLed(color: color)
+                            bolt.setFrontLed(color: color)
+                            bolt.setBackLed(color: color)
+                        }
+                        
                         if let name = bolt.peripheral?.name {
                             switch name {
                             case "SB-A729":
-                                self.grapeBolt = bolt
+                                self.mainBolt = bolt
                             
-                                if let color = self.currentColor {
-                                    bolt.setMainLed(color: color)
-                                    bolt.setFrontLed(color: color)
-                                    bolt.setBackLed(color: color)
-                                }
-
                                 bolt.sensorControl.disable()
                                 // Forçage pour éviter le glitch
                                 bolt.sensorControl.enable(sensors: SensorMask.init(arrayLiteral: .accelerometer))
@@ -107,12 +105,12 @@ class GlobalManager: NSObject {
                                         self.onData(data: data)
                                     }
                                 }
-                                break;
-                                //case "SB-313C":
-                                //    self.shakeBolt = bolt
-                                //    bolt.setFrontLed(color: .red)
-                                //    bolt.setBackLed(color: .red)
-                                //    break;
+                                //break;
+                                case "SB-313C":
+                                    self.shakeBolt = bolt
+                                    bolt.setFrontLed(color: .red)
+                                    bolt.setBackLed(color: .red)
+                                    break;
                                 default:
                                     break;
                             }
@@ -132,26 +130,37 @@ class GlobalManager: NSObject {
     }
     
     func grapeRipens(color: UIColor, duration: Int) {
-        let timing = 1 / 10
+        let timing = 1 / 8
         var time:Double = 0.00
         let interpolationArray = self.colorInterpolation(color: color, duration: duration)
-
-        for t in 0...(interpolationArray.count - 1) {
+        let interpolationArray2 = self.colorInterpolation(color: color, duration: duration + 10)
+        let percent = Double(interpolationArray2.count) / 100 * 75
+        print(["percent", interpolationArray.count, percent])
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(timing * t)) {
-                if t == 0 {
-                    print("pepito")
-                    time = NSDate.timeIntervalSinceReferenceDate
-                }
-                if let bolt = self.grapeBolt {
-                    bolt.setMainLed(color: interpolationArray[t])
-                    bolt.setFrontLed(color: interpolationArray[t])
-                    bolt.setBackLed(color: interpolationArray[t])
-                }
-                
-                if t == interpolationArray.count - 1 {
-                    print("finito")
-                    print(NSDate.timeIntervalSinceReferenceDate - time)
+        SharedToyBox.instance.bolts.forEach { bolt in
+
+            if let name = bolt.peripheral?.name {
+                switch name {
+                case "SB-A729":
+                    for t in 0...( interpolationArray.count - 1) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + Double(timing * t)) {
+                            bolt.setMainLed(color: interpolationArray[t])
+                            bolt.setFrontLed(color: interpolationArray[t])
+                            bolt.setBackLed(color: interpolationArray[t])
+                        }
+                    }
+                    break;
+                default:
+                    for t in 0...( interpolationArray2.count - 1) {
+                        if Double(t) <= round(percent) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + Double(timing * t)) {
+                                bolt.setMainLed(color: interpolationArray2[t])
+                                bolt.setFrontLed(color: interpolationArray2[t])
+                                bolt.setBackLed(color: interpolationArray2[t])
+                            }
+                        }
+                    }
+                    break;
                 }
             }
         }
@@ -167,7 +176,7 @@ class GlobalManager: NSObject {
         print(duration)
         print(ms)
         
-        if let bolt = self.grapeBolt {
+        if let bolt = self.mainBolt {
             bolt.setFrontLed(color: color)
             bolt.setBackLed(color: color)
             DispatchQueue.main.async {
