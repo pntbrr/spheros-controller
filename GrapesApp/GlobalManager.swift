@@ -38,6 +38,8 @@ class GlobalManager: NSObject {
     var isListening = false
     var winemakerIsDoing = false
     var lastTime:Double = 0.00
+    var x = 0
+    var y = 0
     
     override init() {
         super.init()
@@ -65,6 +67,20 @@ class GlobalManager: NSObject {
         socketIO.socket.on("solar", callback: { data, ack in
             let duration = data.count > 0 ? data[0] as? Int : nil
             self.grapesfillsUpSugar(color: self.wineColor, duration: duration ?? 10)
+        })
+        
+        socketIO.socket.on("pressed", callback: { data, ack in
+            if self.x < 8 {
+                if let mainBolt = self.mainBolt {
+                    mainBolt.drawMatrix(pixel: Pixel(x: self.x, y: self.y), color: .black)
+                }
+                if self.y == 7 {
+                    self.y = 0
+                    self.x += 1
+                } else {
+                    self.y = 1
+                }
+            }
         })
         
         self.connectSpheros {
