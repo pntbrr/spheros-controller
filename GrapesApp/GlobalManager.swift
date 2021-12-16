@@ -70,6 +70,7 @@ class GlobalManager: NSObject {
         })
         
         socketIO.socket.on("pressed", callback: { data, ack in
+            print(self.x, self.y)
             if self.x < 8 {
                 if let mainBolt = self.mainBolt {
                     mainBolt.drawMatrix(pixel: Pixel(x: self.x, y: self.y), color: .black)
@@ -78,7 +79,7 @@ class GlobalManager: NSObject {
                     self.y = 0
                     self.x += 1
                 } else {
-                    self.y = 1
+                    self.y += 1
                 }
             }
         })
