@@ -27,7 +27,6 @@ class GlobalManager: NSObject {
     var allSpherosConnected = false
     var currentStep = "idle"
     var mainBolt:BoltToy?
-    var shakeBolt:BoltToy?
     
     let greenGrape:UIColor = UIColor(red: 150/255, green: 255/255, blue: 10/255, alpha: 1)
     let purpleGrape:UIColor = UIColor(red: 140/255, green: 0/255, blue: 205/255, alpha: 1)
@@ -59,6 +58,15 @@ class GlobalManager: NSObject {
                 self.currentStep = s
             }
         }
+        
+        socketIO.socket.on("start", callback: { data, ack in
+            SharedToyBox.instance.bolts.forEach { bolt in
+                bolt.setMainLed(color: self.greenGrape)
+                bolt.setFrontLed(color: self.greenGrape)
+                bolt.setBackLed(color: self.greenGrape)
+            }
+            self.currentColor = self.greenGrape
+        })
         
         socketIO.socket.on("grow", callback: { data, ack in
             self.grapeRipens(color: self.purpleGrape, duration: 10)
@@ -97,11 +105,9 @@ class GlobalManager: NSObject {
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
                         
-                        if let color = self.currentColor {
-                            bolt.setMainLed(color: color)
-                            bolt.setFrontLed(color: color)
-                            bolt.setBackLed(color: color)
-                        }
+                        bolt.setMainLed(color: .blue)
+                        bolt.setFrontLed(color: .blue)
+                        bolt.setBackLed(color: .blue)
                         
                         if let name = bolt.peripheral?.name {
                             switch name {
@@ -121,12 +127,7 @@ class GlobalManager: NSObject {
                                         self.onData(data: data)
                                     }
                                 }
-                                //break;
-                                case "SB-313C":
-                                    self.shakeBolt = bolt
-                                    bolt.setFrontLed(color: .red)
-                                    bolt.setBackLed(color: .red)
-                                    break;
+                                break;
                                 default:
                                     break;
                             }
@@ -148,11 +149,9 @@ class GlobalManager: NSObject {
     
     func grapeRipens(color: UIColor, duration: Int) {
         let timing = 1 / 8
-        var time:Double = 0.00
         let interpolationArray = self.colorInterpolation(color: color, duration: duration)
         let interpolationArray2 = self.colorInterpolation(color: color, duration: duration + 10)
         let percent = Double(interpolationArray2.count) / 100 * 75
-        print(["percent", interpolationArray.count, percent])
             
         SharedToyBox.instance.bolts.forEach { bolt in
 
@@ -330,7 +329,7 @@ extension GlobalManager: BlueSTSDKNodeStateDelegate {
 extension GlobalManager:BlueSTSDKFeatureDelegate {
     func didUpdate(_ feature: BlueSTSDKFeature, sample: BlueSTSDKFeatureSample) {
         DispatchQueue.main.async {
-            var rotationRate: SIMD3 = [0.0,0.0,0.0]
+            //var rotationRate: SIMD3 = [0.0,0.0,0.0]
             
             switch feature {
             case is BlueSTSDKFeatureGyroscope:
@@ -341,7 +340,7 @@ extension GlobalManager:BlueSTSDKFeatureDelegate {
                 break
             case is BlueSTSDKFeatureAcceleration:
                 
-                let normalizedValues = sample.data.map{ $0.floatValue/1000.0 }
+                //let normalizedValues = sample.data.map{ $0.floatValue/1000.0 }
                 let axes = Axes(x: sample.data[0].floatValue, y: sample.data[1].floatValue, z: sample.data[2].floatValue)
                 if self.currentStep == "pour water" {
                     self.socketIO.emit(event: "pouring", data: axes.z)
