@@ -99,9 +99,9 @@ class GlobalManager: NSObject {
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
         // SB-313C - SB-A729 - SB-6C4C
-        SharedToyBox.instance.searchForBoltsNamed(["SB-A729", "SB-313C", "SB-6C4C"]) { err in
+        SharedToyBox.instance.searchForBoltsNamed(["SB-313C"]) { err in
             if err == nil {
-                if(SharedToyBox.instance.bolts.count == 3) {
+                if(SharedToyBox.instance.bolts.count == 1) {
                     
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
@@ -112,7 +112,7 @@ class GlobalManager: NSObject {
                         
                         if let name = bolt.peripheral?.name {
                             switch name {
-                            case "SB-A729":
+                            case "SB-313C":
                                 self.mainBolt = bolt
                             
                                 bolt.sensorControl.disable()
@@ -158,7 +158,7 @@ class GlobalManager: NSObject {
 
             if let name = bolt.peripheral?.name {
                 switch name {
-                case "SB-A729":
+                case self.mainBolt?.peripheral?.name:
                     for t in 0...( interpolationArray.count - 1) {
                         DispatchQueue.main.asyncAfter(deadline: .now() + Double(timing * t)) {
                             bolt.setMainLed(color: interpolationArray[t])

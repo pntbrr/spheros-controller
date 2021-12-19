@@ -20,12 +20,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var spherosConnectionLabel: UILabel!
     @IBOutlet weak var makeWineLabel: UILabel!
     
+    @IBOutlet weak var logTextView: UITextView!
+    
     var global = GlobalManager.instance
     var socketIO = SocketIOManager.instance
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Log.i.setTarget(target: logTextView)
         global.delegate = self
         
         socketIOconnectionLabel.text = socketIO.isConnected ? "SocketIO connected" : "SocketIO disconnected"
@@ -33,7 +36,7 @@ class ViewController: UIViewController {
     
     @IBAction func socketIOconnectButton(_ sender: Any) {
         if socketIO.isConnected {
-            print("Already connected bro'")
+            Log.i.print("Already connected bro'")
         } else {
             socketIO.connect()
         }
