@@ -77,6 +77,11 @@ class GlobalManager: NSObject {
             self.grapesfillsUpSugar(color: self.wineColor, duration: duration ?? 10)
         })
         
+        socketIO.socket.on("beforePressed", callback: { data, ack in
+            self.mainBolt?.setFrontLed(color: self.wineColor)
+            self.mainBolt?.setBackLed(color: self.wineColor)
+            self.mainBolt?.setMainLed(color: self.wineColor)
+        })
         socketIO.socket.on("pressed", callback: { data, ack in
             print(self.x, self.y)
             if self.x < 8 {
@@ -89,6 +94,11 @@ class GlobalManager: NSObject {
                 } else {
                     self.y += 1
                 }
+            } else {
+                self.mainBolt?.setFrontLed(color: .black)
+                self.mainBolt?.setBackLed(color: .black)
+                self.x = 0
+                self.y = 0
             }
         })
         
@@ -99,7 +109,7 @@ class GlobalManager: NSObject {
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
         // SB-313C - SB-A729 - SB-6C4C
-        SharedToyBox.instance.searchForBoltsNamed(["SB-313C"]) { err in
+        SharedToyBox.instance.searchForBoltsNamed(["SB-A729"]) { err in
             if err == nil {
                 if(SharedToyBox.instance.bolts.count == 1) {
                     
@@ -112,7 +122,7 @@ class GlobalManager: NSObject {
                         
                         if let name = bolt.peripheral?.name {
                             switch name {
-                            case "SB-313C":
+                            case "SB-A729":
                                 self.mainBolt = bolt
                             
                                 bolt.sensorControl.disable()

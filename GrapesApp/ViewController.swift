@@ -35,10 +35,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func socketIOconnectButton(_ sender: Any) {
+        socketIO.connect()
         if socketIO.isConnected {
-            Log.i.print("Already connected bro'")
-        } else {
-            socketIO.connect()
+            Log.i.print("Already connected")
         }
         socketIOconnectionLabel.text = socketIO.isConnected ? "SocketIO connected" : "SocketIO disconnected"
     }
