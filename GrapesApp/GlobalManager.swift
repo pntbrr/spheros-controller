@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import BlueSTSDK
+import AVFoundation
 
 
 protocol GlobalManagerDelegate {
@@ -39,6 +40,7 @@ class GlobalManager: NSObject {
     var lastTime:Double = 0.00
     var x = 0
     var y = 0
+    var pressSoundEffect: AVAudioPlayer?
     
     override init() {
         super.init()
@@ -56,6 +58,7 @@ class GlobalManager: NSObject {
         socketIO.socket.on("step") { data, ack in
             if let s = data[0] as? String {
                 self.currentStep = s
+                self.onStep(step: s)
             }
         }
         
@@ -81,12 +84,18 @@ class GlobalManager: NSObject {
             self.mainBolt?.setFrontLed(color: self.wineColor)
             self.mainBolt?.setBackLed(color: self.wineColor)
             self.mainBolt?.setMainLed(color: self.wineColor)
+            self.x = 0
+            self.y = 0
         })
         socketIO.socket.on("pressed", callback: { data, ack in
             print(self.x, self.y)
             if self.x < 8 {
                 if let mainBolt = self.mainBolt {
                     mainBolt.drawMatrix(pixel: Pixel(x: self.x, y: self.y), color: .black)
+                    if (self.x == 7 && self.y == 7) {
+                        self.mainBolt?.setFrontLed(color: .black)
+                        self.mainBolt?.setBackLed(color: .black)
+                    }
                 }
                 if self.y == 7 {
                     self.y = 0
@@ -94,17 +103,31 @@ class GlobalManager: NSObject {
                 } else {
                     self.y += 1
                 }
-            } else {
-                self.mainBolt?.setFrontLed(color: .black)
-                self.mainBolt?.setBackLed(color: .black)
-                self.x = 0
-                self.y = 0
             }
         })
         
         self.connectSpheros {
             self.socketIO.connect()
         }
+        
+        let path = Bundle.main.path(forResource: "press.mp3", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+
+        do {
+            pressSoundEffect = try AVAudioPlayer(contentsOf: url)
+            pressSoundEffect?.numberOfLoops = -1
+            pressSoundEffect?.setVolume(0.0, fadeDuration: 0.0)
+            pressSoundEffect.
+        } catch {
+            print("couldn load audio effect")
+        }
+    }
+    
+    func onStep(step: String) {
+        if (step == "press") {
+            pressSoundEffect?.play()
+        } else {
+            pressSoundEffect?.stop()        }
     }
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
@@ -226,14 +249,21 @@ class GlobalManager: NSObject {
                 if let z = acceleration.z,
                    let y = acceleration.y,
                    let x = acceleration.x {
-                    let absSum = abs(x)+abs(y)+abs(z)
+                    let absX = abs(x)
+                    let absY = abs(y)
+                    let absZ = abs(z)
+                    let absSum = absX + absY + absZ
                     
                     if (self.currentStep == "press" && absSum >= 1.8) {
+                        // presse et eau
                         if(!winemakerIsDoing) {
+                            pressSoundEffect?.setVolume(1.0, fadeDuration: 1.0)
                             winemakerIsDoing = true
                             self.socketIO.emit(event: "pressing", data: 1)
                         }
                         lastTime = NSDate.timeIntervalSinceReferenceDate
+                    
+                        
                     } else if (self.currentStep == "shake" && absSum >= 2) {
                         self.socketIO.emit(event: "shaking", data: absSum)
                     } else if (self.currentStep == "get on" && absSum >= 2) {
@@ -242,6 +272,7 @@ class GlobalManager: NSObject {
                      
                     if(NSDate.timeIntervalSinceReferenceDate - lastTime > 0.5) {
                         if(winemakerIsDoing) {
+                            pressSoundEffect?.setVolume(0.0, fadeDuration: 1.0)
                             winemakerIsDoing = false
                             self.socketIO.emit(event: "pressing", data: 0)
                         }

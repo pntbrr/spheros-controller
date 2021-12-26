@@ -57,6 +57,7 @@
 		BD17647ADFA92784AF1049E7 /* Pods_GrapesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25921232FF913A94836D7D /* Pods_GrapesApp.framework */; };
 		FF47AC0D275FE88500E32E2C /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; platformFilter = ios; };
 		FF47AC0E275FE88500E32E2C /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF80FC3F275EC3360010F532 /* BlueSTSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFAA65F8277863AE0014121D /* press.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FFAA65F5277863AE0014121D /* press.mp3 */; };
 		FFB712BC276FC40900A7807A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB712BB276FC40900A7807A /* Logger.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		5BB14FA22759153B00C673B3 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		F40296A1B8B327531E8E4E85 /* Pods-GrapesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrapesApp.debug.xcconfig"; path = "Target Support Files/Pods-GrapesApp/Pods-GrapesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueSTSDK.xcodeproj; path = BlueSTSDK/BlueSTSDK/BlueSTSDK.xcodeproj; sourceTree = SOURCE_ROOT; };
+		FFAA65F5277863AE0014121D /* press.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = press.mp3; sourceTree = "<group>"; };
 		FFB712BB276FC40900A7807A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +193,7 @@
 		5BB14F2D2759146300C673B3 /* GrapesApp */ = {
 			isa = PBXGroup;
 			children = (
+				FFAA65F5277863AE0014121D /* press.mp3 */,
 				FFB712B8276FC3F900A7807A /* Log */,
 				FF80FC39275EC3360010F532 /* BlueSTSDK.xcodeproj */,
 				5BB14FA22759153B00C673B3 /* SocketIOManager.swift */,
@@ -461,6 +464,7 @@
 				5BB14F3B2759146400C673B3 /* LaunchScreen.storyboard in Resources */,
 				5BB14F382759146400C673B3 /* Assets.xcassets in Resources */,
 				5BB14F362759146300C673B3 /* Main.storyboard in Resources */,
+				FFAA65F8277863AE0014121D /* press.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
