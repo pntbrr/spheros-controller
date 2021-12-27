@@ -117,7 +117,6 @@ class GlobalManager: NSObject {
             pressSoundEffect = try AVAudioPlayer(contentsOf: url)
             pressSoundEffect?.numberOfLoops = -1
             pressSoundEffect?.setVolume(0.0, fadeDuration: 0.0)
-            pressSoundEffect.
         } catch {
             print("couldn load audio effect")
         }
