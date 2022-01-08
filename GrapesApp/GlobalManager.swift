@@ -22,8 +22,11 @@ class GlobalManager: NSObject {
     var delegate: GlobalManagerDelegate?
     
     let socketIO = SocketIOManager.instance
+    
+    
     let blueSTSDKmanager = BlueSTSDKManager.sharedInstance
     var blueSTSDKfeatures = [BlueSTSDKFeature]()
+    var blueTileConnected = false
     
     var allSpherosConnected = false
     var currentStep = "idle"
@@ -53,6 +56,9 @@ class GlobalManager: NSObject {
         
         socketIO.socket.on(clientEvent: .connect) { data, ack in
             if self.allSpherosConnected { self.socketIO.emit(event: "spherosConnected")}
+            
+            if self.blueTileConnected { self.socketIO.emit(event: "bluetileConnected")}
+            else {self.socketIO.emit(event: "bluetileDisconnected")}
         }
         
         socketIO.socket.on("step") { data, ack in
@@ -338,6 +344,7 @@ extension GlobalManager: BlueSTSDKNodeStateDelegate {
         switch newState {
         case .connected:
             print("BLUESTSDK Connected!")
+            self.blueTileConnected = true
             self.socketIO.emit(event: "bluetileConnected")
             self.blueSTSDKmanager.discoveryStop()
             
@@ -356,6 +363,7 @@ extension GlobalManager: BlueSTSDKNodeStateDelegate {
             
         case .disconnecting, .unreachable:
             print("BLUESTSDK Disconnected!")
+            self.blueTileConnected = false
             self.socketIO.emit(event: "bluetileDisconnected")
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.blueSTSDKmanager.discoveryStart()
