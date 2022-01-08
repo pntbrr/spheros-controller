@@ -110,7 +110,7 @@ class GlobalManager: NSObject {
             self.socketIO.connect()
         }
         
-        let path = Bundle.main.path(forResource: "press.mp3", ofType:nil)!
+        let path = Bundle.main.path(forResource: "press-2.mp3", ofType:nil)!
         let url = URL(fileURLWithPath: path)
 
         do {
@@ -143,6 +143,7 @@ class GlobalManager: NSObject {
                         bolt.setBackLed(color: .blue)
                         
                         if let name = bolt.peripheral?.name {
+                            Log.i.print("Bolt named \(bolt.peripheral!.name!) has \( bolt.batteryLevel!) battery")
                             switch name {
                             case "SB-A729":
                                 self.mainBolt = bolt
