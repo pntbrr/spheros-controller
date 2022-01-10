@@ -137,9 +137,9 @@ class GlobalManager: NSObject {
     
     func connectSpheros(spherosConnected: (() -> ())? = nil) {
         // SB-313C - SB-A729 - SB-6C4C
-        SharedToyBox.instance.searchForBoltsNamed(["SB-A729"]) { err in
+        SharedToyBox.instance.searchForBoltsNamed(["SB-A729", "SB-313C", "SB-6C4C"]) { err in
             if err == nil {
-                if(SharedToyBox.instance.bolts.count == 1) {
+                if(SharedToyBox.instance.bolts.count == 3) {
                     
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
@@ -149,7 +149,6 @@ class GlobalManager: NSObject {
                         bolt.setBackLed(color: .blue)
                         
                         if let name = bolt.peripheral?.name {
-                            Log.i.print("Bolt named \(bolt.peripheral!.name!) has \( bolt.batteryLevel!) battery")
                             switch name {
                             case "SB-A729":
                                 self.mainBolt = bolt
