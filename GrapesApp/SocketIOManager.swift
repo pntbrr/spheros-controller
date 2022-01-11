@@ -10,7 +10,7 @@ import Foundation
 import SocketIO
 
 class SocketIOManager {
-    let socketioManager = SocketManager(socketURL: URL(string: "http://127.0.0.1:3000")!, config: SocketIOClientConfiguration(arrayLiteral: .log(false), .compress))
+    let socketioManager = SocketManager(socketURL: URL(string: "http://10.3.141.100:3000")!, config: SocketIOClientConfiguration(arrayLiteral: .log(false), .compress))
     var socket: SocketIOClient
     var isConnected = false
     
