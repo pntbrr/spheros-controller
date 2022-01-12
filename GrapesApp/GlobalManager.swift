@@ -70,9 +70,9 @@ class GlobalManager: NSObject {
         
         socketIO.socket.on("start", callback: { data, ack in
             SharedToyBox.instance.bolts.forEach { bolt in
-                bolt.setMainLed(color: self.greenGrape)
                 bolt.setFrontLed(color: self.greenGrape)
                 bolt.setBackLed(color: self.greenGrape)
+                bolt.setMainLed(color: self.greenGrape)
             }
             self.currentColor = self.greenGrape
         })
@@ -89,7 +89,11 @@ class GlobalManager: NSObject {
         socketIO.socket.on("beforePressed", callback: { data, ack in
             self.mainBolt?.setFrontLed(color: self.wineColor)
             self.mainBolt?.setBackLed(color: self.wineColor)
-            self.mainBolt?.setMainLed(color: self.wineColor)
+            for j in 0...7 {
+                for i in 0...7 {
+                    self.mainBolt?.drawMatrix(pixel: Pixel(x: i, y: j), color: self.wineColor)
+                }
+            }
             self.x = 0
             self.y = 0
         })
@@ -97,7 +101,7 @@ class GlobalManager: NSObject {
             print(self.x, self.y)
             if self.x < 8 {
                 if let mainBolt = self.mainBolt {
-                    mainBolt.drawMatrix(pixel: Pixel(x: self.x, y: self.y), color: .black)
+                    mainBolt.drawMatrix(pixel: Pixel(x: self.y, y: self.x), color: .black)
                     if (self.x == 7 && self.y == 7) {
                         self.mainBolt?.setFrontLed(color: .black)
                         self.mainBolt?.setBackLed(color: .black)
