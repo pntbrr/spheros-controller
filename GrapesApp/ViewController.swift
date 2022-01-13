@@ -50,6 +50,11 @@ class ViewController: UIViewController {
         //socketIO.emit(event: "leds")
         //global.colorInterpolation(duration: 5)
         //global.grapesChanging(color: global.purpleGrape, duration: 10)
+        global.grapeRipens(color: global.purpleGrape, duration: 10)
+    }
+    
+    @IBAction func fillSenderClicked(_ sender: Any) {
+        global.grapesfillsUpSugar(color: global.wineColor, duration: 10)
     }
     
     @IBAction func makeWineClicked(_ sender: Any) {

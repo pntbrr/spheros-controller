@@ -34,7 +34,7 @@ class GlobalManager: NSObject {
     
     let greenGrape:UIColor = UIColor(red: 150/255, green: 255/255, blue: 10/255, alpha: 1)
     let purpleGrape:UIColor = UIColor(red: 140/255, green: 0/255, blue: 205/255, alpha: 1)
-    let wineColor:UIColor = UIColor(red: 60/255, green: 2/255, blue: 3/255, alpha: 1)
+    let wineColor:UIColor = UIColor(red: 255/255, green: 2/255, blue: 3/255, alpha: 1)
     var currentColor:UIColor?
     
     // Press part
@@ -148,9 +148,9 @@ class GlobalManager: NSObject {
                     SharedToyBox.instance.bolts.forEach { bolt in
                         bolt.setStabilization(state: SetStabilization.State.off)
                         
-                        bolt.setMainLed(color: .blue)
-                        bolt.setFrontLed(color: .blue)
-                        bolt.setBackLed(color: .blue)
+                        bolt.setMainLed(color: self.greenGrape)
+                        bolt.setFrontLed(color: self.greenGrape)
+                        bolt.setBackLed(color: self.greenGrape)
                         
                         if let name = bolt.peripheral?.name {
                             switch name {
